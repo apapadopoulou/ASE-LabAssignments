@@ -15,7 +15,7 @@
 	</properties>
 	
 	<modules>
-		<module>histogramgenerator</module>
+		<module>gradeshistogram</module>
 	</modules>
 	
 </project>
