@@ -4,7 +4,7 @@
     <groupId>gr.aueb.dmst.angelikipapadopoulou</groupId>
     <artifactId>ase2021_practical_assignments</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../ase2021_practical_assignments/pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>gradeshistogram</artifactId>
   <name>Grades Histogram Generator</name>
