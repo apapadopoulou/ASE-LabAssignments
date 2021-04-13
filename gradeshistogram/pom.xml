@@ -7,8 +7,8 @@
     <relativePath>../ase2021_practical_assignments/pom.xml</relativePath>
   </parent>
   <artifactId>gradeshistogram</artifactId>
-  <name>Module project</name>
-  <description>The module project for the second lab assignment.</description>
+  <name>Grades Histogram Generator</name>
+  <description>The project for the second lab assignment. This project generates a histogram out of a grades file, provided upon runtime.</description>
   <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
   <dependencies>
 	  <dependency>

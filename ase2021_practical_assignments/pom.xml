@@ -4,8 +4,8 @@
   <artifactId>ase2021_practical_assignments</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Second lab assignment</name>
-  <description>This Maven project is created for the needs of the second lab assignment of the Applied Software Engineering course.</description>
+  <name>Applied Software Engineering Lab Projects</name>
+  <description>This Maven project is created for the needs of delivering the lab assignments of the Applied Software Engineering course in DMST.</description>
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
