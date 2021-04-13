@@ -6,4 +6,9 @@
   <packaging>pom</packaging>
   <name>Second lab assignment</name>
   <description>This Maven project is created for the needs of the second lab assignment of the Applied Software Engineering course.</description>
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+	</properties>
 </project>
