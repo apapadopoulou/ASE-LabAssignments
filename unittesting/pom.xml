@@ -12,5 +12,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Unit Testing Practice Project</name>
 	<description>A project for practicing Unit Testing, the objective of the third lab assignment of the Applied Software Engineering course in DMST.</description>
-
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+	</dependencies>
 </project>
