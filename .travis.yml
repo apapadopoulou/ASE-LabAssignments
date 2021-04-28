@@ -9,7 +9,7 @@ branches:
   - development
 
 before_script: 
-  - cd project
+  - cd unittesting
   - ls -la
 
 script: 
