@@ -1,4 +1,7 @@
 # ASE-LabAssignments
+
+[![Build Status](https://travis-ci.com/apapadopoulou/ASE-LabAssignments.svg?token=qKbBiUxrrsDvdEMFqoWh&branch=development)](https://travis-ci.com/apapadopoulou/ASE-LabAssignments)
+
 A repository to deliver the lab assignments of the Applied Software Engineering course.
 
 ## <a name="table-of-contents"></a>Table of contents
