@@ -13,4 +13,4 @@ before_script:
   - ls -la
 
 script: 
-  - mvn clean package
+  - mvn clean package jacoco:report
