@@ -32,7 +32,7 @@ public class FileIO {
 		if (!file.exists()) 
 			throw new IllegalArgumentException("Input file does not exist");
 		
-		List<Integer> numbersList = new ArrayList<>();
+		List<Integer> numbersList = new ArrayList<Integer>();
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(file));
