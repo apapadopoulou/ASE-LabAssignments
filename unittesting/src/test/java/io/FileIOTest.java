@@ -38,4 +38,11 @@ public class FileIOTest {
 		fio.readFile(filePath);
 	}
 	
+	@Test
+	public void testReadFileContainsInvalidEntries() {
+		String filePath = resourcesPath + "invalid_entries.txt";
+		int [] expectedOutput = {1, 2, 9};
+		Assert.assertArrayEquals(expectedOutput, fio.readFile(filePath));
+	}
+	
 }
