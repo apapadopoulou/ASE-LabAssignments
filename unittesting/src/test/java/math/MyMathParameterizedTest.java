@@ -25,7 +25,7 @@ public class MyMathParameterizedTest {
 	
 	@Parameters
 	public static Collection<Object[]> data() {
-		Object[][] data  = new Object[][] {{1, 1}, 
+		Object[][] data  = new Object[][] {{0, 1}, {1, 1}, 
 			{2, 2}, {12, 479001600}};
 		return Arrays.asList(data);
 	}
