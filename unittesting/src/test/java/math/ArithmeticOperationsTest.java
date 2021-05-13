@@ -26,8 +26,18 @@ public class ArithmeticOperationsTest {
 	}
 
 	@Test
-	public void test_multiply_normal_double() {
+	public void test_multiply_normal() {
 		Assert.assertEquals(6, ao.multiply(3, 2));
+	}
+	
+	@Test
+	public void test_multiply_firstZero() {
+		Assert.assertEquals(0, ao.multiply(0, 2));
+	}
+	
+	@Test
+	public void test_multiply_secondZero() {
+		Assert.assertEquals(0, ao.multiply(3, 0));
 	}
 	
 	@Rule
