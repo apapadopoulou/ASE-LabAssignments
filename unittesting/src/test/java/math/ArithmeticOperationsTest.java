@@ -20,6 +20,51 @@ public class ArithmeticOperationsTest {
 		Assert.assertEquals(1.5, ao.divide(3.0, 2.0), 1e-8);
 	}
 	
+	@Test
+	public void test_divide_normalInt_secondNumberNegative() {
+		Assert.assertEquals(-4.0, ao.divide(8.0, -2.0), 0);
+	}
+	
+	@Test
+	public void test_divide_normalDouble_secondNumberNegative() {
+		Assert.assertEquals(-0.9, ao.divide(2.7, -3.0), 1e-8);
+	}
+	
+	@Test
+	public void test_divide_normalInt_firstNumberNegative() {
+		Assert.assertEquals(-2.0, ao.divide(-6.0, 3.0), 0);
+	}
+	
+	@Test
+	public void test_divide_normalDouble_firstNumberNegative() {
+		Assert.assertEquals(-0.3, ao.divide(-0.6, 2.0), 1e-8);
+	}
+	
+	@Test
+	public void test_divide_normal_zeroNumerator_positive() {
+		Assert.assertEquals(0.0, ao.divide(0.0, 2.0), 0);
+	}
+	
+	@Test
+	public void test_divide_normal_zeroNumerator_negative() {
+		Assert.assertEquals(0.0, ao.divide(0.0, -2.0), 0);
+	}
+	
+	@Test
+	public void test_divide_large_int() {
+		Assert.assertEquals(87.0, ao.divide(57333.0, 659.0), 0);
+	}
+	
+	@Test
+	public void test_divide_large_int_firstNegative() {
+		Assert.assertEquals(-87.0, ao.divide(-57333.0, 659.0), 0);
+	}
+	
+	@Test
+	public void test_divide_large_int_secondNegative() {
+		Assert.assertEquals(-87.0, ao.divide(57333.0, -659.0), 0);
+	}
+	
 	@Test(expected = ArithmeticException.class)
 	public void test_divide_zero() {
 		ao.divide(3, 0);
