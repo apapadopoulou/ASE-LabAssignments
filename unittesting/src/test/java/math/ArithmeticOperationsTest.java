@@ -85,6 +85,11 @@ public class ArithmeticOperationsTest {
 		Assert.assertEquals(0, ao.multiply(3, 0));
 	}
 	
+	@Test
+	public void test_multiply_large() {
+		Assert.assertEquals(57333, ao.multiply(659, 87));
+	}
+	
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 	
@@ -110,10 +115,17 @@ public class ArithmeticOperationsTest {
 	}
 	
 	@Test
-	public void test_multiply_bigNumbers_RuleException() {
+	public void test_multiply_firstBigNumber_RuleException() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("The product does not fit in an Integer variable");
 		ao.multiply(Integer.MAX_VALUE, 3);
+	}
+	
+	@Test
+	public void test_multiply_secondBigNumber_RuleException() {
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("The product does not fit in an Integer variable");
+		ao.multiply(3, Integer.MAX_VALUE);
 	}
 
 
