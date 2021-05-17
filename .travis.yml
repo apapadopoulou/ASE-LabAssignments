@@ -1,0 +1,16 @@
+language: java
+
+jdk:
+  - openjdk8
+
+branches:
+  only:
+  - master
+  - development
+
+before_script: 
+  - cd unittesting
+  - ls -la
+
+script: 
+  - mvn clean package jacoco:report
