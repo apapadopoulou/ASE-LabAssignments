@@ -8,6 +8,7 @@ A repository to deliver the lab assignments of the Applied Software Engineering 
 * [ase2021_practical_assignments](#parent)
 * [gradeshistogram](#grades-histogram)
 * [unittesting](#unit-testing)
+* [SourceCodeAnalyzer](#source)
 
 ---
 
@@ -35,3 +36,10 @@ That's it! Now the project is built and you can run the .jar file passing a grad
 
 This maven project is created for the purposes of the third lab assignment and 
 the objective is to practice unit testing. You can find details [here](unittesting/README.md).
+
+---
+
+## <a name="source"></a>SourceCodeAnalyzer
+
+This maven project is created for the purposes of the fourth lab assignment and 
+contains a system that needs to be modified, on order to improve the design quality using design patterns. You can find details [here](SourceCodeAnalyzer/README.md).
