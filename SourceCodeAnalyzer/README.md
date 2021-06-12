@@ -3,6 +3,7 @@
 	- [Build Instructions](#build-instructions)
 	- [Step-by-Step Modifications](#step-by-step-modifications)
 		- [Step 1: Modification of `MetricsExporter` class using the Strategy pattern](#step-1-modification-of-metricsexporter-class-using-the-strategy-pattern)
+		- [Step 2: Implementation of the Factory pattern with a `MetricsExporterFactory` class](#step-2-implementation-of-the-factory-pattern-with-a-metricsexporterfactory-class)
 
 # Source Code Analyzer Repository
 
@@ -48,3 +49,13 @@ The classes that were introduced to implement the interface are `CSVExporter` an
 **Pros:** The exporters are extensible and new file types can be supported by the creation of a new class that implements the `MetricsExporter` interface. Also, new functionality according to the file type can be intriduced easily.
 
 **Cons:** The checks for the type of exporter that should be used have been moved to the `DemoClient` class, which results in high-coupling between this class and the `MetricsExporter` implementations.
+
+### Step 2: Implementation of the Factory pattern with a `MetricsExporterFactory` class
+
+The Factory pattern is selected to improve the design of the system by hiding the instantiation logic from the `DemoClient` class.
+
+Firstly, a `MetricsExporterFactory` class is created to be used, whenever there is a case where we need to determine which type of exporter we will use. The class contains the `createMetricsExporter` method that checks the type of the output file in an `if` statement and created the appropriate exporter implementation of the `MetricsExporter` interface.
+
+The `DemoClient` class now only contains code for the instantiation of the `MetricsExporterFactory` object, the `createMetricsExporter` method call and the export of the metrics.
+
+**Pros:** The instantiation logic is hidden from the `DemoClient` class, as an interface is provided to separate the logic from the client. In addition, the `DemoClient` class will not be affected in a future extension of the `MetricsExporter` implementations.
