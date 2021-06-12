@@ -35,9 +35,16 @@ public class DemoClient {
 		metrics.put("loc",loc);
 		metrics.put("nom",nom);
 		metrics.put("noc",noc);
-				
-		MetricsExporter exporter = new MetricsExporter();
-		exporter.writeFile(outputFileType, metrics, outputFilePath);
+		
+		if (outputFileType.equals("csv")) {
+			MetricsExporter exporter = new CSVExporter();
+			exporter.writeFile(metrics, outputFilePath);
+		} else if (outputFileType.equals("json")) {
+			MetricsExporter exporter = new JSONExporter();
+			exporter.writeFile(metrics, outputFilePath);
+		} else {
+			throw new IllegalArgumentException("Unknown type : " + outputFileType);
+		}
 	}
 
 }
