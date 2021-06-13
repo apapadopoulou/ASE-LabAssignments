@@ -6,6 +6,7 @@
 		- [Step 2: Implementation of the Factory pattern with a `MetricsExporterFactory` class](#step-2-implementation-of-the-factory-pattern-with-a-metricsexporterfactory-class)
 		- [Step 3: Implementation of the Null Object pattern on the `MetricsExporter` interface](#step-3-implementation-of-the-null-object-pattern-on-the-metricsexporter-interface)
 		- [Step 4: Apply the Strategy, Factory and Null Object patterns on the `SourceFileReader` class](#step-4-apply-the-strategy-factory-and-null-object-patterns-on-the-sourcefilereader-class)
+		- [Step 4: Apply the Strategy, Factory and Null Object patterns on the `SourceCodeAnalyzer` class](#step-4-apply-the-strategy-factory-and-null-object-patterns-on-the-sourcecodeanalyzer-class)
 
 # Source Code Analyzer Repository
 
@@ -90,4 +91,18 @@ As mentioned above, the `SourceFileReaderFactory` class is responsible for deter
 
 Finally, the `SourceCodeAnalyzer` class now communicates with the `SourceFileReaderFactory` class, to select the appropriate reader.
 
-**Pros:** The structure of the system is now improved, as new readers can be easily added by implementing the `SourceFileReader` interface. The use of the Factory pattern provides an easy interface that is used to determine the type of reader that will be used, while the use of the Null Object pattern contributes to a more easy andling of null cases.
+**Pros:** The structure of the system is now improved, as new readers can be easily added by implementing the `SourceFileReader` interface. The use of the Factory pattern provides an easy interface that is used to determine the type of reader that will be used, while the use of the Null Object pattern contributes to a more easy handling of null cases.
+
+### Step 4: Apply the Strategy, Factory and Null Object patterns on the `SourceCodeAnalyzer` class
+
+The `SourceCodeAnalyzer` class was replaced by a `SourceCodeAnalyzer` interface. The interface groups the methods that calculate the metrics and is implemented by the `RegexAnalyzer` and `StrcompAnalyzer` classes. A `NullAnalyzer` class also implements the interface, according to the Null Object design pattern. This class represents the null case, where the input that was given as an analyzer type is invalid. All methods of this class return `-1`, as this was also done in the initial `SourceCodeAnalyzer` class, if the input about the analyzer tyoe was invalid.
+
+A `SourceCodeAnalyzerFactory` class is also created to handle the creation of the source code analyzer. This class also communicates with the `SourceFileReaderFactory` class, in order to create the source file reader object that will be used to read the source code file.
+
+All of the classes that implement the `SourceCodeAnalyzer` interface begin with a contructor that initializes a `fileReader` field with the appropriate file reader.
+
+The code that creates the `SourceCodeAnalyzer` object is moved to the `DemoClient` class. There, code that creates a `SourceCodeAnalyzerFactory` class object that is used to create the appropriate source code analyzer object.
+
+**Pros:** The structure of the system is slightly improved, as new readers can be easily added by implementing the `SourceCodeAnalyzer` interface. The use of the Factory pattern provides an easy interface that is used to determine the type of analyzer that will be used and the use of the Null Object pattern helps to handle the case where the input for the type of the source code analyzer is invalid.
+
+**Cons:** The existence of the `fileReader` field means that the implementations of the `SourceCodeAnalyzer` and the `SourceFileReader` are not completely independent. In addition, more code is added to the `DemoClient` class, in order to create the `SourceCodeAnalyzerFactory` and the `SourceCodeAnalyzer` objects and handle the overall code analysis process.
