@@ -4,6 +4,7 @@
 	- [Step-by-Step Modifications](#step-by-step-modifications)
 		- [Step 1: Modification of `MetricsExporter` class using the Strategy pattern](#step-1-modification-of-metricsexporter-class-using-the-strategy-pattern)
 		- [Step 2: Implementation of the Factory pattern with a `MetricsExporterFactory` class](#step-2-implementation-of-the-factory-pattern-with-a-metricsexporterfactory-class)
+		- [Step 3: Implementation of the Null Object pattern on the `MetricsExporter` interface](#step-3-implementation-of-the-null-object-pattern-on-the-metricsexporter-interface)
 
 # Source Code Analyzer Repository
 
@@ -65,3 +66,13 @@ Firstly, a `MetricsExporterFactory` class is created to be used, whenever there 
 The `DemoClient` class now only contains code for the instantiation of the `MetricsExporterFactory` object, the `createMetricsExporter` method call and the export of the metrics.
 
 **Pros:** The instantiation logic is hidden from the `DemoClient` class, as an interface is provided to separate the logic from the client. In addition, the `DemoClient` class will not be affected in a future extension of the `MetricsExporter` implementations.
+
+### Step 3: Implementation of the Null Object pattern on the `MetricsExporter` interface
+
+A null exporter was created, to be used in the case where the output file type is incorrect.
+
+The `NullExporter` class implements the `MetricsExporter` interface by printing an error message in the `writeFile` method body. The `MetricsExporterFactory` class creates a null exporter whenever the output file type is unknown. 
+
+**Pros:** The null case is handled properly and there is no need to handle the exceptions in the factory or the client class. The overall code is simplified and the client class is not required to handle exceptions.
+
+**Cons:** The pattern should not be used to hide code errors.

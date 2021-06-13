@@ -20,7 +20,7 @@ public class MetricsExporterFactory {
 		} else if (fileType.equals("json")) {
 			exporter = new JSONExporter();
 		} else {
-			throw new IllegalArgumentException("Unknown type : " + fileType);
+			exporter = new NullExporter();
 		}
 		return exporter;
 	}
