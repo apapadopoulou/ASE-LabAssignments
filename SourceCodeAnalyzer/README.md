@@ -5,6 +5,7 @@
 		- [Step 1: Modification of `MetricsExporter` class using the Strategy pattern](#step-1-modification-of-metricsexporter-class-using-the-strategy-pattern)
 		- [Step 2: Implementation of the Factory pattern with a `MetricsExporterFactory` class](#step-2-implementation-of-the-factory-pattern-with-a-metricsexporterfactory-class)
 		- [Step 3: Implementation of the Null Object pattern on the `MetricsExporter` interface](#step-3-implementation-of-the-null-object-pattern-on-the-metricsexporter-interface)
+		- [Step 4: Apply the Strategy, Factory and Null Object patterns on the `SourceFileReader` class](#step-4-apply-the-strategy-factory-and-null-object-patterns-on-the-sourcefilereader-class)
 
 # Source Code Analyzer Repository
 
@@ -76,3 +77,17 @@ The `NullExporter` class implements the `MetricsExporter` interface by printing 
 **Pros:** The null case is handled properly and there is no need to handle the exceptions in the factory or the client class. The overall code is simplified and the client class is not required to handle exceptions.
 
 **Cons:** The pattern should not be used to hide code errors.
+
+### Step 4: Apply the Strategy, Factory and Null Object patterns on the `SourceFileReader` class
+
+To begin with, the `SourceFileReader` class was replaced by a `SourceFileReader` interface. The methods `readFileIntoList` and `readFileIntoString` are grouped by the interface and their bodies are implemented accordingly in the classes that implement the interface. The `type` field of the `SourceFileReader` class is redundant, as the suitable class will be determined in the `SourceFileReaderFactory` class that will be created later on.
+
+The `WebFileReader` class implements the `SourceFileReader` interface and represents the case where the file that contains the source code is located on the web. The `LocalFileReader` class implements the `SourceFileReader` interface and represents the case where the file that contains the source code is located locally.
+
+In addition to the above classes, a `NullFileReader` class also implements the `SourceFileReader` interface by covering the case where the file path is invalid. The class was implemented with the logic to handle the null case effectively, so the return values of the  `readFileIntoList` and `readFileIntoString` methods are an empty list and an empty string correspondingly. This way, the system handles the null case by letting the program terminate without interruptions. 
+
+As mentioned above, the `SourceFileReaderFactory` class is responsible for determining the type of the source file reader class that should be used. This happens in an `if` block.
+
+Finally, the `SourceCodeAnalyzer` class now communicates with the `SourceFileReaderFactory` class, to select the appropriate reader.
+
+**Pros:** The structure of the system is now improved, as new readers can be easily added by implementing the `SourceFileReader` interface. The use of the Factory pattern provides an easy interface that is used to determine the type of reader that will be used, while the use of the Null Object pattern contributes to a more easy andling of null cases.

@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
  * The current functionality supports two types of source code analysis,
  * namely regex (with the use of regular expressions) and 
  * strcomp (with the use of string comparison).
- * This class deliberately contains code smells and violations of design principles. 
- * @author agkortzis
+ * @author apapadopoulou
  *
  */
 public class SourceCodeAnalyzer {
@@ -21,7 +20,8 @@ public class SourceCodeAnalyzer {
 	private SourceFileReader fileReader;
 	
 	public SourceCodeAnalyzer(String fileReaderType) {
-		this.fileReader = new SourceFileReader(fileReaderType);
+		SourceFileReaderFactory factory = new SourceFileReaderFactory();
+		this.fileReader = factory.createSourceFileReader(fileReaderType);
 	}
 		
 	public int calculateLOC(String filepath, String analyzerType) throws IOException {
