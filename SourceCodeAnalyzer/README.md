@@ -65,7 +65,9 @@ In order to improve the quality of the system design, the following design patte
 
 All of the code changes are documented below, in the [Step-by-Step Modifications](#step-by-step-modifications) unit, in a step-by-step format. The steps 1, 2, 3, 6 describe the implementation of one design pattern each, while the steps 4 and 5 describe changes that concern more than one design pattern, grouping the individual implementations into one step.
 
-The class diagram of the final version of the system is the following.
+The class diagram of the final version of the system is located [here](src/main/resources/Code%20Analysis%20System.png). It is also added below.
+
+![Class Diagram](src/main/resources/Code%20Analysis%20System.png)
 
 ---
 
