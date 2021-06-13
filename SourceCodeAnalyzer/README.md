@@ -6,7 +6,8 @@
 		- [Step 2: Implementation of the Factory pattern with a `MetricsExporterFactory` class](#step-2-implementation-of-the-factory-pattern-with-a-metricsexporterfactory-class)
 		- [Step 3: Implementation of the Null Object pattern on the `MetricsExporter` interface](#step-3-implementation-of-the-null-object-pattern-on-the-metricsexporter-interface)
 		- [Step 4: Apply the Strategy, Factory and Null Object patterns on the `SourceFileReader` class](#step-4-apply-the-strategy-factory-and-null-object-patterns-on-the-sourcefilereader-class)
-		- [Step 4: Apply the Strategy, Factory and Null Object patterns on the `SourceCodeAnalyzer` class](#step-4-apply-the-strategy-factory-and-null-object-patterns-on-the-sourcecodeanalyzer-class)
+		- [Step 5: Apply the Strategy, Factory and Null Object patterns on the `SourceCodeAnalyzer` class](#step-5-apply-the-strategy-factory-and-null-object-patterns-on-the-sourcecodeanalyzer-class)
+		- [Step 6: Implement the Facade design pattern](#step-6-implement-the-facade-design-pattern)
 
 # Source Code Analyzer Repository
 
@@ -93,7 +94,7 @@ Finally, the `SourceCodeAnalyzer` class now communicates with the `SourceFileRea
 
 **Pros:** The structure of the system is now improved, as new readers can be easily added by implementing the `SourceFileReader` interface. The use of the Factory pattern provides an easy interface that is used to determine the type of reader that will be used, while the use of the Null Object pattern contributes to a more easy handling of null cases.
 
-### Step 4: Apply the Strategy, Factory and Null Object patterns on the `SourceCodeAnalyzer` class
+### Step 5: Apply the Strategy, Factory and Null Object patterns on the `SourceCodeAnalyzer` class
 
 The `SourceCodeAnalyzer` class was replaced by a `SourceCodeAnalyzer` interface. The interface groups the methods that calculate the metrics and is implemented by the `RegexAnalyzer` and `StrcompAnalyzer` classes. A `NullAnalyzer` class also implements the interface, according to the Null Object design pattern. This class represents the null case, where the input that was given as an analyzer type is invalid. All methods of this class return `-1`, as this was also done in the initial `SourceCodeAnalyzer` class, if the input about the analyzer tyoe was invalid.
 
@@ -106,3 +107,13 @@ The code that creates the `SourceCodeAnalyzer` object is moved to the `DemoClien
 **Pros:** The structure of the system is slightly improved, as new readers can be easily added by implementing the `SourceCodeAnalyzer` interface. The use of the Factory pattern provides an easy interface that is used to determine the type of analyzer that will be used and the use of the Null Object pattern helps to handle the case where the input for the type of the source code analyzer is invalid.
 
 **Cons:** The existence of the `fileReader` field means that the implementations of the `SourceCodeAnalyzer` and the `SourceFileReader` are not completely independent. In addition, more code is added to the `DemoClient` class, in order to create the `SourceCodeAnalyzerFactory` and the `SourceCodeAnalyzer` objects and handle the overall code analysis process.
+
+### Step 6: Implement the Facade design pattern
+
+The `DemoClient` class contains a lot of code that is used to handle the factories and the functionalities of the system. The Facade design pattern could improve the design of the system by hiding all of the implementation-specific information from the client.
+
+To implement the Facade design pattern, an `AnalysisFacade` class is introduced. The class has an `analyzeCode` method, that performs all of the system operations during the code analysis process. The parameters of the method are the `sourceCodeAnalyzerType`, that determines the type of the code analyzer that will be uses, the `sourceFileLocation`, that determines if the source code file is located locally or on the web, the `filepath`, which is the actual path of the source code file, the `outputFileType`, which is the type of the output file and the `outputFilePath`, which represents the path of the output file.
+
+Since all of the operations code has been moved in the `AnalysisFacade` class, the `DemoClient` class now only creates the facade object and calls the `analyzeCode` method, passing the main arguments as input.
+
+**Pros:** The complexity of the system is hidden from the client class and the system is independent from the client.

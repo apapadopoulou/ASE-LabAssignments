@@ -1,8 +1,6 @@
 package demo;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import codeanalyzer.*;
 
@@ -26,20 +24,9 @@ public class DemoClient {
 			System.exit(1);
 		}
 
-		SourceCodeAnalyzerFactory factory = new SourceCodeAnalyzerFactory();
-		SourceCodeAnalyzer analyzer = factory.createSourceCodeAnalyzer(sourceCodeAnalyzerType, sourceFileLocation);
-		int loc = analyzer.calculateLOC(filepath);
-		int nom = analyzer.calculateNOM(filepath);
-		int noc = analyzer.calculateNOC(filepath);
+		AnalysisFacade facade = new AnalysisFacade();
+		facade.analyzeCode(sourceCodeAnalyzerType, sourceFileLocation, filepath, outputFileType, outputFilePath);
 		
-		Map<String, Integer> metrics = new HashMap<>();
-		metrics.put("loc",loc);
-		metrics.put("nom",nom);
-		metrics.put("noc",noc);
-		
-		MetricsExporterFactory f = new MetricsExporterFactory();
-		MetricsExporter exporter = f.createMetricsExporter(outputFileType);
-		exporter.writeFile(metrics, outputFilePath);
 	}
 
 }
