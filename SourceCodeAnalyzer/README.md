@@ -1,6 +1,7 @@
 ## <a name="table-of-contents"></a>Table of contents
 - [Source Code Analyzer Repository](#source-code-analyzer-repository)
 	- [Build Instructions](#build-instructions)
+	- [Solution Overview](#solution-overview)
 	- [Step-by-Step Modifications](#step-by-step-modifications)
 		- [Step 1: Modification of `MetricsExporter` class using the Strategy pattern](#step-1-modification-of-metricsexporter-class-using-the-strategy-pattern)
 		- [Step 2: Implementation of the Factory pattern with a `MetricsExporterFactory` class](#step-2-implementation-of-the-factory-pattern-with-a-metricsexporterfactory-class)
@@ -42,6 +43,30 @@ The purpose of the assignment is to modify the code and implement some design pa
 
 	`java –jar ./target/sourcecodeanalyzer-0.0.1-SNAPSHOT-jar-with-dependencies.jar ./src/test/resources/TestClass.java regex local metrics_results csv`
 	
+---
+
+## Solution Overview
+
+The purpose of the fourth lad assignment is to use design patterns in order to improve the quality of the Source Code Analyzer system.
+
+The system contains two packages that represent the code analyzer and the client that provides input to the system. In the initial version, a `DemoClient` class was used to communicate with the classes that perform the operations of code analysis and metrics export. A `SourceCodeAnalysis` class was used to perform the source code analysis and calculate the LOC, NOM and NOC metrics. In order to do the analysis, the class used a reader object fron the `SourceFileReader` class. Finally, the `MetricsExporter` class was used to export the metrics to an output file.
+
+There are three primary dimension in the system, that are hard to be extended and dependent on each other:
+
+1. The **source code analyzer type**. Currently, it can be either *regex* or *strcomp*.
+2. The **file reader location type**. Currently, it can be either *web* or *local*.
+3. The **metrics exporter type**. Currently, it can be either *csv* or *json*.
+
+In order to improve the quality of the system design, the following design patterns were used:
+1. The **Strategy** design pattern was used to make the dimensions that were mentioned above more extensible and independent from each other, as well as make the addition of dimension-specific functionality more easy.
+2. The **Factory** design pattern was used in insatnces when it eas necessary to provide an interface, that would make the communication with the dimensions more simple.
+3. The **Null Object** design pattern was used to extend the above-mentioned dimensions, in order to enable the handling of null cases.
+4. The **Facade** design pattern was used to mask the complexity of the system and hide the implementation details from the client.
+
+All of the code changes are documented below, in the [Step-by-Step Modifications](#step-by-step-modifications) unit, in a step-by-step format. The steps 1, 2, 3, 6 describe the implementation of one design pattern each, while the steps 4 and 5 describe changes that concern more than one design pattern, grouping the individual implementations into one step.
+
+The class diagram of the final version of the system is the following.
+
 ---
 
 ## Step-by-Step Modifications
